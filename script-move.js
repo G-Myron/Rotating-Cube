@@ -3,6 +3,9 @@ var x0,y0, moving=false;
 var [initialAngX, initialAngY] = [0, 0];
 var currentAngX, currentAngY;
 
+reset();
+
+//-------------------------------Move/Rotate Events
 
 document.addEventListener("mousedown", (event)=> firstTouch(event.x,event.y));
 document.addEventListener("mousemove", (event)=> rotateCube(event.x,event.y));
@@ -12,9 +15,13 @@ document.addEventListener("touchstart", (event)=> firstTouch(event.touches[0].cl
 document.addEventListener("touchmove", (event)=> rotateCube(event.touches[0].clientX,event.touches[0].clientY));
 document.addEventListener("touchend", endRotation);
 
+//-----------------------------Other Events
+
 document.querySelector("button#reset").addEventListener("click", reset);
+window.addEventListener("wheel", zoom);
 
 
+//-----------------------Rotation functions
 
 function firstTouch(x, y) {
     moving = true;
@@ -32,18 +39,26 @@ function rotateCube(x, y, friction = 2) {
 
     [currentAngX, currentAngY] = [initialAngX + angX, initialAngY + angY];
 
-    cube.style.setProperty("transform",
-        `translateZ(-35vmin) rotateX(${currentAngX}deg) rotateY(${currentAngY}deg)`);
+    cube.style.transform = cube.style.transform.slice(0, cube.style.transform.indexOf("rotate")) + ` rotateX(${currentAngX}deg) rotateY(${currentAngY}deg)`;
 }
 
 function endRotation() {
+    if(!moving) return;
     [initialAngX, initialAngY] = [currentAngX, currentAngY];
     moving = false;
 }
 
 
+//------------------------Other functions
+
+function zoom(event){
+    zStr = cube.style.transform;
+    z = parseInt( zStr.slice(11, zStr.indexOf("vmin")) );
+    zNew = z - Math.sign(event.deltaY) * 10;
+    cube.style.transform = zStr.replace( z, zNew);
+}
 
 function reset(){
-    cube.style.setProperty("transform", "translateZ(-35vmin)");
+    cube.style.transform = "translateZ(-35vmin) rotateX(0) rotateY(0)";
     initialAngX= initialAngY = 0;
 }
