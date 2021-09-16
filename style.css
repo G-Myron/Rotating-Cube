@@ -4,6 +4,7 @@ html,body{
     justify-content: center;
     align-items: center;
     height: 100%;
+    overscroll-behavior: none;
     cursor: grab;
 }
 body{
