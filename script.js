@@ -6,6 +6,7 @@ cube.addEventListener("drag", rotateCube);
 cube.addEventListener("dragstart", firstTouch);
 cube.addEventListener("dragend", endRotation);
 
+document.querySelector("button#reset").addEventListener("click", reset);
 
 
 function firstTouch(event) {
@@ -32,3 +33,7 @@ function endRotation(event) {
     [initialAngX, initialAngY] = rotateCube(event);
 }
 
+function reset(){
+    cube.style.setProperty("transform", "translateZ(-35vmin)");
+    initialAngX= initialAngY = 0;
+}

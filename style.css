@@ -77,3 +77,19 @@ html,body{
     transform: rotateX(180deg) translateZ(35vmin);
 }
 
+
+button{
+    position: absolute;
+    right: 8vmin;
+    bottom: 8vmin;
+    width: 8vw;
+    height: 8vh;
+    cursor: pointer;
+    background-color: blueviolet;
+    font: 1.5rem serif;
+}
+button:active{
+    border: 2px solid black;
+    box-shadow: 2px 3px 2px black;
+    text-shadow: 1px 1px 1px black;
+}
