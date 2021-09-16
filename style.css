@@ -20,7 +20,7 @@ body{
 .container{
     width: 70vmin;
     height: 70vmin;
-    perspective: 100vmin;
+    perspective: 30cm;
 	box-shadow: 0 0 10px white;
 }
 
