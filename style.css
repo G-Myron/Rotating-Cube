@@ -1,17 +1,27 @@
 
 html,body{
-    background: #aaa;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100%;
+    cursor: grab;
+}
+body{
+    background: #aaa url("RCicon.svg") repeat;
+    background-size: contain;
+}
+*:active{
+    cursor: grabbing;
+}
+*:active *{
+    cursor: grabbing;
 }
 
 .container{
     width: 70vmin;
     height: 70vmin;
     perspective: 100vmin;
-	box-shadow: 0 4px 6px white;
+	box-shadow: 0 0 10px white;
 }
 
 .cube{
@@ -23,14 +33,14 @@ html,body{
     transform: translateZ(-35vmin);
     transition: .1s;
 
-    /* animation: rotateCube 10s 1 linear; */
+    /* animation: rotateCube 2s 1 linear; */
 }
 
 @keyframes rotateCube{
-    25%{transform: translateZ(-35vmin) rotateX(180deg) rotateY(90deg);}
+    25%{transform: translateZ(-35vmin) rotateX(-60deg) rotateY(90deg);}
     50%{transform: translateZ(-35vmin) rotateX(0deg) rotateY(180deg);}
-    75%{transform: translateZ(-35vmin) rotateX(180deg) rotateY(270deg);}
-    100%{transform: translateZ(-35vmin) rotateX(360deg) rotateY(360deg);}
+    75%{transform: translateZ(-35vmin) rotateX(60deg) rotateY(270deg);}
+    100%{transform: translateZ(-35vmin) rotateX(0deg) rotateY(360deg);}
 }
 
 
@@ -43,9 +53,8 @@ html,body{
     height: 100%;
     font-size: 10vmin;
     border-radius: 1rem;
-    cursor: grab;
+    user-select: none;
 }
-
 
 .front{
     background-color: white;
@@ -74,7 +83,7 @@ html,body{
 
 .back{
     background-color: green;
-    transform: rotateX(180deg) translateZ(35vmin);
+    transform: rotateY(180deg) translateZ(35vmin);
 }
 
 
@@ -83,10 +92,14 @@ button{
     right: 8vmin;
     bottom: 8vmin;
     width: 8vw;
+    min-width: fit-content;
     height: 8vh;
+    min-height: 2rem;
+    font: 2rem serif;
+    font-weight: 900;
+    color: blueviolet;
     cursor: pointer;
-    background-color: blueviolet;
-    font: 1.5rem serif;
+    background-color: transparent;
 }
 button:active{
     border: 2px solid black;
